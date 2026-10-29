@@ -52,3 +52,20 @@ Work on a copy of the unpacked app (`zen/zen/` from the upstream tarball).
 - Any internal `Zen` strings in compiled JS modules (class names, pref names) are
   deliberately untouched: they are not user-facing and renaming risks breakage.
 - The `shallette.example` URLs do not resolve until Shallette web pages exist.
+
+## Round 2 — desktop integration fixes (2026-10-29)
+
+After first launch the owner still saw Zen: the Wayland desktop matched the running
+window's app-id `zen` to the installed Zen flatpak, so the dock showed Zen's icon and
+"Zen Browser" as the app name — everything *around* the window, not inside it. Fixes:
+
+1. `application.ini` → `RemotingName=shallette` (Wayland app-id; compiled default was `zen`).
+2. Installed user-level `shallette.desktop` (`StartupWMClass=shallette`) and the rune
+   into `~/.local/share/icons/hicolor/{16..256}/apps/shallette.png`.
+3. `about-logo.svg` recolored to `currentColor` (the original Zen asset renders black;
+   the white replacement was invisible on light surfaces).
+4. Start-page/onboarding strings go through `{ -brand-short-name }` → already Shallette;
+   no dedicated start-page logo asset exists in the bundle.
+
+Note: `about:newtab` never finishes rendering under `--headless --screenshot` (Zen start
+page waits on interactive state) — verify identity changes in a real window, not headless.
