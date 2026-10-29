@@ -48,3 +48,14 @@ The reverse-engineering pass (`docs/ZEN-INTERNALS.md` §2.4) found every asset s
 `updater.png`. Placeholder sources live in `assets/logo/` (`shallette-full.svg`, `shallette-compact.svg`)
 with a single `#rune-symbol` path to be replaced by the owner's rune contour
 (single path, `currentColor` fills only, legible at 16px for the compact variant).
+
+## Status update (2026-10-29, night)
+
+The owner's rune mark has been received and traced to vector: a spear-shaped stave
+carrying two ward-diamonds whose tips cross at the centre. Final geometry lives in
+`assets/logo/shallette-full.svg` and `shallette-compact.svg` (`currentColor` fills/strokes).
+
+A **badge edition build** was produced from the official Zen 1.23.4b Linux x86_64 release
+by the repack procedure in `docs/BADGE-EDITION.md`: brand strings replaced in all locales,
+all rune icon slots rendered from the vector, updates disabled. Verified: browser starts
+(`--version` OK, headless render OK) and UI strings show "Shallette".
