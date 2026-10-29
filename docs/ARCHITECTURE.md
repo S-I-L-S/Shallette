@@ -93,13 +93,12 @@ The detailed checklist lives in [`LICENSING.md`](LICENSING.md); branding rules a
 
 ## Current implementation status
 
-Where the code actually stands:
+Where things actually stand:
 
-- A ChatGPT agent has applied **all 263 Zen patches to Firefox 158 sources** and completed the Shallette branding pass.
-- The build ran inside **that agent's VM** — not on this machine.
-- Therefore: the approach is validated second-hand, but **no artifact exists locally and nothing is verified here yet**.
+- A ChatGPT agent has applied **all 263 Zen patches to Firefox 158 sources** and completed the Shallette branding pass. The build ran inside **that agent's VM** — not on this machine — so the from-source build is validated second-hand and remains locally unverified.
+- Meanwhile, a **badge edition** exists: an identity-layer repack of the official Zen 1.23.4b Linux x86_64 release, versioned **0.0.1** (brand strings replaced, rune/portrait icons, canonical profile `~/.shallette`, updates disabled, `MOZ_APP_REMOTINGNAME=shallette`). It starts and renders; its known limits are documented in [`BADGE-EDITION.md`](BADGE-EDITION.md).
 
-The next concrete step is reproducing the build locally on the primary test machine (Mac Pro 5,1, openSUSE Tumbleweed, 2× Xeon E5620, 40 GiB RAM) as Milestone 1 of the [`ROADMAP.md`](ROADMAP.md).
+The next concrete step for the from-source line is reproducing the build locally on the primary test machine (Mac Pro 5,1, openSUSE Tumbleweed, 2× Xeon E5620, 40 GiB RAM) as Milestone 1 of the [`ROADMAP.md`](ROADMAP.md).
 
 ## Planned documentation
 

@@ -1,6 +1,6 @@
 # Release plan
 
-No Shallette builds are available from this starter package.
+No Shallette builds have been published. A badge-edition build (version 0.0.1, a repack of Zen 1.23.4b — see [`BADGE-EDITION.md`](BADGE-EDITION.md)) exists locally but is not distributed from this repository.
 
 Before creating release variants, document for each one:
 

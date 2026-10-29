@@ -44,6 +44,8 @@ The first practical milestone: a Linux x86_64 build of Shallette on the Zen/Geck
 
 **Status in a third-party environment:** a ChatGPT agent has applied all 263 Zen patches to Firefox 158 sources and completed the Shallette branding pass; the build ran inside that agent's VM, not on this machine. This is real progress, but it is second-hand evidence — treat the build as **not locally verified** until Milestone 1 is reproduced here.
 
+**Interim path:** a badge edition — an identity-layer repack of the official Zen 1.23.4b Linux x86_64 release, versioned 0.0.1 — has been produced and tested; see [`BADGE-EDITION.md`](BADGE-EDITION.md). It is a stopgap, not this milestone: the from-source build above remains the goal.
+
 **Complete when:** a locally built Linux x86_64 image passes the branding and behavior checks on the primary test machine, and the build steps are documented well enough for another contributor to repeat them.
 
 ## Milestone 2 — Build switching without a launcher

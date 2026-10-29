@@ -1,6 +1,6 @@
 # Brand direction and attribution
 
-Shallette needs a visual identity that is original, consistent, and easy to distinguish from any browser project it may build on. The final design is not yet approved; this document sets the direction and review checks for that work.
+Shallette needs a visual identity that is original, consistent, and easy to distinguish from any browser project it may build on. The rune mark is final (see the status update below); this document sets the direction and review checks for the remaining identity work.
 
 ## Brand character
 
@@ -45,9 +45,9 @@ Before publishing brand material:
 The reverse-engineering pass (`docs/ZEN-INTERNALS.md` §2.4) found every asset slot the mark must fill:
 `about-logo.svg`, `about-logo.png@1x/@2x`, `about-logo-private.png@1x/@2x` (private windows),
 `about-wordmark.svg`, `icon128.png` + small sizes, `document_pdf.svg` (PDF viewer watermark),
-`updater.png`. Placeholder sources live in `assets/logo/` (`shallette-full.svg`, `shallette-compact.svg`)
-with a single `#rune-symbol` path to be replaced by the owner's rune contour
-(single path, `currentColor` fills only, legible at 16px for the compact variant).
+`updater.png`. Sources live in `assets/logo/` (`shallette-full.svg`, `shallette-compact.svg`),
+now carrying the final rune geometry (`currentColor` fills/strokes, legible at 16px
+for the compact variant).
 
 ## Status update (2026-10-29, night)
 
@@ -55,7 +55,11 @@ The owner's rune mark has been received and traced to vector: a spear-shaped sta
 carrying two ward-diamonds whose tips cross at the centre. Final geometry lives in
 `assets/logo/shallette-full.svg` and `shallette-compact.svg` (`currentColor` fills/strokes).
 
-A **badge edition build** was produced from the official Zen 1.23.4b Linux x86_64 release
-by the repack procedure in `docs/BADGE-EDITION.md`: brand strings replaced in all locales,
-all rune icon slots rendered from the vector, updates disabled. Verified: browser starts
-(`--version` OK, headless render OK) and UI strings show "Shallette".
+A **badge edition build** (version 0.0.1) was produced from the official Zen 1.23.4b
+Linux x86_64 release by the repack procedure in `docs/BADGE-EDITION.md`: brand strings
+replaced in all locales, all rune icon slots rendered from the vector, updates disabled.
+Verified: browser starts (`--version` OK, headless render OK) and UI strings show "Shallette".
+
+For the badge edition's panel and window icons, the owner's watercolor portrait
+(`assets/logo/shallette-portrait.png`) is used instead; the rune remains on the
+about-dialog logos and as the text-mark alternative (see `docs/BADGE-EDITION.md`, round 3).

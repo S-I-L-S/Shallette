@@ -26,7 +26,8 @@ Work on a copy of the unpacked app (`zen/zen/` from the upstream tarball).
    `app.update.auto=false`, `app.update.enabled=false`, `app.update.url=""`,
    `zen.updates.show-update-notification=false`.
 4. **App metadata.** `application.ini`: `Name=Shallette`, `Vendor=Shallette Project`
-   (keep `RemotingName=zen` for the badge edition). `updater.ini` strings → Shallette.
+   (`RemotingName` handling was revised later — see Round 2 and Round 3b).
+   `updater.ini` strings → Shallette.
 5. **Assets.** Render the rune mark (single source of truth: the measured vector in
    `assets/logo/`) into every slot: `icon16/32/48/64/128.png`, `about-logo.png(+@2x)`,
    `about-logo-private.png(+@2x)` (indigo tint), `about.png`, `updater.png`,
@@ -37,8 +38,7 @@ Work on a copy of the unpacked app (`zen/zen/` from the upstream tarball).
    per-entry `ZipInfo` with 0644 attrs, no zip64, sorted paths). Mozilla's reader
    accepts it; verified by launch.
 7. **Rename.** `zen` → `shallette` (binary and top dir) — safe, libs resolve via
-   `$ORIGIN`. Add `shallette.desktop` (StartupWMClass=zen until a source build
-   changes the remoting name).
+   `$ORIGIN`. Add `shallette.desktop` (StartupWMClass=zen; Round 2 sets it to `shallette`).
 8. **Verify.** `./shallette --version` (exit 0); headless screenshots of `about:about`
    and `about:support` with an isolated `-profile`; grep the rendered UI for "Shallette".
 9. **Package.** `tar cJf shallette-<ver>-linux-x86_64.tar.xz shallette-pkg/`.
