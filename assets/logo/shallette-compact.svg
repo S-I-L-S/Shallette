@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Shallette compact mark (placeholder)">
+  <!--
+    PLACEHOLDER — compact variant for tab/sidebar sizes (16px and up).
+    Same rune path as shallette-full.svg, simplified strokes; fill="currentColor" only.
+  -->
+  <path id="rune-symbol" d="M0 0" fill="currentColor"/>
+</svg>

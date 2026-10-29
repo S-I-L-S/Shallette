@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Shallette mark (placeholder)">
+  <!--
+    PLACEHOLDER — replace the path below with the owner's rune-like symbol.
+    Requirements: single <path>, fill="currentColor" only, transparent background,
+    must read clearly at 16px for the compact variant (see docs/BRANDING.md).
+  -->
+  <circle cx="256" cy="256" r="240" fill="none" stroke="currentColor" stroke-width="24" opacity="0.35"/>
+  <path id="rune-symbol" d="M0 0" fill="currentColor"/>
+</svg>

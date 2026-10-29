@@ -39,3 +39,12 @@ Before publishing brand material:
 3. Use screenshots from an actual build; remove personal data and private browsing information.
 4. Check that installer and release artwork do not imply endorsement.
 5. Preserve attribution required by licenses for incorporated code and assets.
+
+## Rune mark slots (from the Zen 1.23.4b dissection)
+
+The reverse-engineering pass (`docs/ZEN-INTERNALS.md` §2.4) found every asset slot the mark must fill:
+`about-logo.svg`, `about-logo.png@1x/@2x`, `about-logo-private.png@1x/@2x` (private windows),
+`about-wordmark.svg`, `icon128.png` + small sizes, `document_pdf.svg` (PDF viewer watermark),
+`updater.png`. Placeholder sources live in `assets/logo/` (`shallette-full.svg`, `shallette-compact.svg`)
+with a single `#rune-symbol` path to be replaced by the owner's rune contour
+(single path, `currentColor` fills only, legible at 16px for the compact variant).
