@@ -61,3 +61,32 @@ Upstream also ships `.mar` update archives per platform (`linux.mar`, `windows.m
 `macos.mar`, `linux-aarch64.mar`, `windows-arm64.mar`). They are the future backbone of
 Shallette's own update channel (see ARCHITECTURE.md — deferred); a badge edition built
 from a `.mar` would land as an update payload, not a full package.
+
+## Android (GeckoView badge edition)
+
+Source: official Firefox for Android (Fenix) 159.0 arm64 APK from
+archive.mozilla.org (Zen has no Android build — this is Shallette's mobile line on
+the same Gecko engine, with Fenix's UI).
+
+Pipeline (proven end-to-end on the dev host):
+1. Extract `assets/omni.ja`, run the standard string sweep (brand.ftl keys,
+   `\bFirefox\b` / `\bZen\b` → Shallette in l10n; 300 files patched in 159.0).
+2. Repack omni.ja (python zipfile).
+3. Rebuild the APK preserving each entry's original compression method (resources.arsc
+   stays STORED), drop `META-INF/` (old signature).
+4. `zipalign -f 4`, sign with a project keystore (`~/shallette-android.keystore`,
+   keytool RSA 2048), verify with `apksigner verify` — **PASS**.
+
+Artifact: `shallette-0.0.1-android-arm64.apk` (137.7 MB, signed).
+
+Known limits: the launcher label and icon still read as Firefox — they live in
+`resources.arsc`, which needs an arsc-aware pass (apktool) planned separately. UI text
+inside Gecko surfaces is Shallette-branded; Fenix chrome strings are not.
+
+## VM testing
+
+qemu + KVM + virt-manager are installed on the dev host. A boot probe of the local
+`evrisselle-test.qcow2` (Tumbleweed jeOS) was performed headless via the QEMU monitor
+(`screendump`): the image boots to jeOS Firstboot. Full in-VM Shallette tests need the
+firstboot pass and a desktop snapshot — next step; a licensed Windows image would
+unlock Windows-artifact tests.
