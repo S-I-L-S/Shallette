@@ -69,3 +69,18 @@ window's app-id `zen` to the installed Zen flatpak, so the dock showed Zen's ico
 
 Note: `about:newtab` never finishes rendering under `--headless --screenshot` (Zen start
 page waits on interactive state) — verify identity changes in a real window, not headless.
+
+## Round 3 — identity consolidation (2026-10-29, evening)
+
+- **Version 0.0.1**: badge editions are versioned independently from upstream; `application.ini Version=0.0.1`.
+- **Canonical profile fixed at `~/.shallette`**: the `shallette` executable is now a wrapper script
+  (`shallette` → `shallette-bin -profile ~/.shallette`), so every launch — terminal or desktop file —
+  uses the same store. Cause of the "doesn't save anything" report: desktop-file launches without an
+  explicit `-profile` created a fresh profile under `~/.config/zen/` (XDG path derived from the compiled
+  app name), so data landed in a different profile each time.
+- **Panel/taskbar icon**: the owner's watercolor portrait (teal-haired figure) cropped to a face
+  square, circular-masked, rendered into icon16–256, window icons, hicolor; the rune stays on
+  about-dialog logos and as the text-mark alternative (`assets/logo/`).
+- `firefox-wordmark.svg` restored as a blank stub (removing it produced a chrome-URL warning).
+- Known compiled-level leftovers: `--version` prints "Mozilla Zen 0.0.1" (string assembled at runtime
+  from binary constants), user-agent remains Firefox-based — both change only in a from-source build.
