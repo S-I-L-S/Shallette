@@ -84,3 +84,17 @@ page waits on interactive state) — verify identity changes in a real window, n
 - `firefox-wordmark.svg` restored as a blank stub (removing it produced a chrome-URL warning).
 - Known compiled-level leftovers: `--version` prints "Mozilla Zen 0.0.1" (string assembled at runtime
   from binary constants), user-agent remains Firefox-based — both change only in a from-source build.
+
+### Round 3b — the real fix for the desktop identity
+
+`RemotingName` in `application.ini` does NOT affect WM_CLASS/Wayland app-id in this build
+(verified via an XWayland test window: WM_CLASS stayed `"Navigator", "zen"`). What works is
+the environment variable — the wrapper now sets:
+
+```bash
+export MOZ_APP_REMOTINGNAME=shallette
+```
+
+Verified: WM_CLASS becomes `"Navigator", "shallette"`, so the dock matches
+`shallette.desktop` and shows the portrait icon instead of the installed Zen flatpak.
+If GNOME still shows a stale icon after this, a relogin refreshes the shell icon cache.
