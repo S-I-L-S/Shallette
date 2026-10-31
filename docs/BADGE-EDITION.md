@@ -98,3 +98,21 @@ export MOZ_APP_REMOTINGNAME=shallette
 Verified: WM_CLASS becomes `"Navigator", "shallette"`, so the dock matches
 `shallette.desktop` and shows the portrait icon instead of the installed Zen flatpak.
 If GNOME still shows a stale icon after this, a relogin refreshes the shell icon cache.
+
+## Round 5 — 0.0.2 on Zen 1.24b (Gecko 159)
+
+A parallel session began upgrading this package to Zen 1.24b but stopped mid-way
+(new omni.ja + ini files from 159, old 158 binaries) — the classic
+"Maybe try to reinstall Zen?" state. Lesson recorded: **the launcher stub embeds the
+GRE compatibility version**; swapping omni.ja/ini without the stub and libxul bricks
+the build. The flatpak installation is a legitimate source of matching 159 binaries
+(`/var/lib/flatpak/app/app.zen_browser.zen/current/active/files/zen`).
+
+Shallette **0.0.2** = Zen 1.24b (Gecko 159) + the full rebrand procedure
+(strings, assets, update/telemetry off, X11 launcher). Verified: `--version`,
+headless `about:support` shows Shallette; running instance uses
+`MOZ_APP_REMOTINGNAME=shallette` + `MOZ_ENABLE_WAYLAND=0` (popup-freeze fix).
+
+Notes: `--version` in the 159 build prints the compiled `Mozilla Zen 0.0.2`-style
+string (compiled GRE/version constants — UI reads the ini correctly and shows 0.0.2).
+`README-BUILD.txt` inside the package warns future sessions about stub/GRE matching.
