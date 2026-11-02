@@ -116,3 +116,17 @@ headless `about:support` shows Shallette; running instance uses
 Notes: `--version` in the 159 build prints the compiled `Mozilla Zen 0.0.2`-style
 string (compiled GRE/version constants — UI reads the ini correctly and shows 0.0.2).
 `README-BUILD.txt` inside the package warns future sessions about stub/GRE matching.
+
+## Deploy step: pin the default profile (learned 2026-11-03)
+
+Any launch of `shallette-bin` WITHOUT `-profile` resolves the default profile from
+`~/.config/zen/profiles.ini` (XDG root derived from the app identity) — a fresh, EMPTY
+store. Symptom: "the browser forgets logins and tabs" depending on which launcher fired.
+
+Fix applied on the dev host and required for every deployment:
+1. Ship only ONE launcher: the wrapper (`shallette`), which forces `-profile ~/.shallette`.
+2. Pin `~/.config/zen/profiles.ini` to the canonical store:
+   `[Profile0] IsRelative=0 Path=/home/liada/.shallette Default=1` and set the same path
+   in the `[Install…]` section.
+3. Audit stray desktop files (`userapp-*.desktop`) — they tend to bypass the wrapper.
+Verified: a direct `shallette-bin` run without flags now writes to the canonical profile.
