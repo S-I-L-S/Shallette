@@ -130,3 +130,36 @@ Fix applied on the dev host and required for every deployment:
    in the `[Install…]` section.
 3. Audit stray desktop files (`userapp-*.desktop`) — they tend to bypass the wrapper.
 Verified: a direct `shallette-bin` run without flags now writes to the canonical profile.
+
+## Round 6 — launcher stub / GRE mismatch fix (2026-11-08)
+
+Symptom on the Mac Pro 5,1: the desktop icon and `./shallette` did nothing visible; a
+terminal launch failed immediately with:
+
+```
+Error: Platform version '159.0.1' is not compatible with
+minVersion >= 159.0 maxVersion <= 159.0
+Maybe try to reinstall Zen?
+```
+
+Cause: the package had been upgraded to Zen 1.24.1b (GRE `platform.ini` Milestone
+`159.0.1`), but the launcher stub `shallette-bin` was still the 159.0 binary copied from
+the flatpak Zen 1.24b. The stub embeds the GRE compatibility range, so it rejected the
+newer `libxul`.
+
+Fix: copy the matching stub from the same build's own `zen-bin` over `shallette-bin`
+(the branded name is only a filename; the wrapper and `MOZ_APP_REMOTINGNAME` provide the
+Shallette identity):
+
+```bash
+cp -a zen-bin shallette-bin
+```
+
+The old 159.0 stub was kept as `shallette-bin.bak-159.0`. Verified: the wrapper launches,
+renders a window, and `WM_CLASS` is `"Navigator", "shallette"`. Stale profile locks from
+the failed attempts (`~/.shallette/lock`, `~/.shallette/.parentlock`, pointing at an old
+hostname/PID) were removed after confirming no browser process was running.
+
+Rule for future upgrades: after replacing `libxul`/`omni.ja`/`platform.ini`, always
+replace the stub too, using the `zen-bin` from the exact same upstream build. Update
+`shallette.desktop` to `StartupWMClass=shallette` to match the runtime WM class.
